@@ -10,38 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phone_book.hpp"
+#include "PhoneBook.hpp"
 
 int main ()
 {
 	bool status = true;
-	std::string get_string;
-    // create contact ?.. 
+	std::string command;
 	phoneBook book;
 	int i;
 	i = 0;
 
+	book.show_startup();
 	while(status)
 	{
-        std::cin>>get_string;
-		if(get_string == "EXIT")
+        std::cout << ">";
+		std::getline(std::cin, command);
+		if(command == "EXIT")
 		{
 			std::cout<<"see you soon !"<<std::endl;
 			return(0);
 		}
-		if(!get_string.compare("ADD"))
+		if(!command.compare("ADD"))
 		{
 			if(i != 8)
 			{
-				// list[i].set_attribute();
 				book.add_contact();
                 i++;
 			}
 			else
 				std::cout<<"contact full !"<<std::endl;
 		}
-		if(!get_string.compare("SEARCH"))
+		if(!command.compare("SEARCH"))
 			book.search_contact();
-            // function_search(list, i );
     }
 }

@@ -12,10 +12,12 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	phone_book
+EXE					=	PhoneBook
 
 SRCS_PATH			=	.
-SRCS_FILE			=	main.cpp
+SRCS_FILE			=	main.cpp \
+						PhoneBook.cpp \
+						Contact.cpp \
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
 OBJ_PATH			=	.obj
