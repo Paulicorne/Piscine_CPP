@@ -12,13 +12,15 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	megaphone
+EXE					=	phone_book
 
 SRCS_PATH			=	.
-SRCS_FILE			=	megaphone.cpp
+SRCS_FILE			=	main.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
 OBJ_PATH			=	.obj
+INC_PATH			=	.
+INC					=	$(INC_PATH)/phone_book.hpp
 
 CPPFLAG				=	-std=c++98
 
