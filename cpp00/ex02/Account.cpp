@@ -1,12 +1,12 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
-#include "Account.class.hpp"
+#include "Account.hpp"
 
-int	Account::_nbAccounts = 0;
-int	Account::_totalAmount = 0;
-int	Account::_totalNbDeposits = 0;
-int	Account::_totalNbWithdrawals = 0;
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit)
 {
@@ -49,12 +49,11 @@ void Account::_displayTimestamp(void)
 
 	tm utc_tm = *localtime(&time_now);
 	std::cout << std::setfill('0') << "[" << (utc_tm.tm_year + 1900)
-			<< std::setw(2) << utc_tm.tm_mon
-			<< std::setw(2) << utc_tm.tm_mday << "_"
-			<< std::setw(2) << utc_tm.tm_hour
-			<< std::setw(2) << utc_tm.tm_min
-			<< std::setw(2) << utc_tm.tm_sec << "] ";
-	//std::cout << "[19920104_091532] ";
+			  << std::setw(2) << utc_tm.tm_mon + 1
+			  << std::setw(2) << utc_tm.tm_mday << "_"
+			  << std::setw(2) << utc_tm.tm_hour
+			  << std::setw(2) << utc_tm.tm_min
+			  << std::setw(2) << utc_tm.tm_sec << "] ";
 }
 
 int Account::getNbAccounts(void)
@@ -90,7 +89,7 @@ void Account::makeDeposit(int deposit)
 {
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "p_amount:" <<  this->_amount << ";";
+	std::cout << "p_amount:" << this->_amount << ";";
 	std::cout << "deposit:" << deposit << ";";
 	this->_amount += deposit;
 	Account::_totalAmount += deposit;
@@ -100,11 +99,11 @@ void Account::makeDeposit(int deposit)
 	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
-bool Account::makeWithdrawal( int withdrawal )
+bool Account::makeWithdrawal(int withdrawal)
 {
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "p_amount:" <<  this->_amount << ";";
+	std::cout << "p_amount:" << this->_amount << ";";
 	if (this->_amount < withdrawal)
 	{
 		std::cout << "withdrawal:refused" << std::endl;
