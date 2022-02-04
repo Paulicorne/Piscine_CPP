@@ -15,7 +15,9 @@ END					=    \033[0m
 EXE					=	brain
 
 SRCS_PATH			=	.
-SRCS_FILE			=	main.cpp
+SRCS_FILE			=	main.cpp\
+						HumanA.cpp\
+						Weapon.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
 OBJ_PATH			=	.obj
