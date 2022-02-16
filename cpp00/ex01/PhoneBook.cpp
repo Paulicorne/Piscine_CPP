@@ -15,7 +15,7 @@ phoneBook::~phoneBook()
 void phoneBook::show_startup(void)
 {
 	std::cout << "# Awesome Phone Book" << std::endl;
-	std::cout << "# Enter your command [HELP, ADD, SEARCH, EXIT]:" << std::endl;
+	std::cout << "# Enter your command [ADD, SEARCH, EXIT]:" << std::endl;
 }
 
 void phoneBook::add_contact(void)
