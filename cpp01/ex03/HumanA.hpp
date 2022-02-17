@@ -6,16 +6,16 @@
 
 class HumanA {
 	public :
-		HumanA(std::string name, Weapon weapon);
+		HumanA(std::string name, Weapon &weapon); // a little "HumanA" instance can't be created without a weapon.
 		~HumanA(void);
 	
 	void	attack(void) const;
-	void	setType(Weapon);
-	void	getType(Weapon);
+	void	setType(Weapon); // setter : modifies the type of the aWeapon
+	void	getType(Weapon); // getter : returns the type of the aWeapon
 	
 	private:
-		std::string	_name;
-		Weapon _weapon;
+		std::string	_aName; // this human A has a name. You can't change it.
+		Weapon* _aWeapon;
 };
 
 #endif 

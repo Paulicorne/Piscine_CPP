@@ -17,6 +17,7 @@ EXE					=	brain
 SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp\
 						HumanA.cpp\
+						HumanB.cpp\
 						Weapon.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))

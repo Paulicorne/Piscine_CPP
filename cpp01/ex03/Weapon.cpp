@@ -1,4 +1,5 @@
-#include "HumanA.hpp"
+// #include "HumanA.hpp"
+#include "Weapon.hpp"
 #include <iostream>
 
 Weapon::Weapon(std::string name) : _type(name)
@@ -23,9 +24,4 @@ bool	Weapon::setType(std::string newType)
 	}
 	this->_type = newType;
 		return(true);
-	// this->_type = new_type;
 }
-// void	Weapon::getType(void) const
-// {
-	
-// }
