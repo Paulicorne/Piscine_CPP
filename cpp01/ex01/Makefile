@@ -16,7 +16,7 @@ EXE					=	zombie
 
 SRCS_PATH			=	.
 SRCS_FILE			=	Zombie.cpp\
-						tests.cpp\
+						main.cpp\
 						ZombieHorde.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
@@ -24,7 +24,7 @@ OBJ_PATH			=	.obj
 
 CPPFLAG				=	-std=c++98
 
-COMP				=	clang++ $(CPPFLAG) -Wall -Wextra -Werror
+COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror
 
 RM					=	rm -rf
 

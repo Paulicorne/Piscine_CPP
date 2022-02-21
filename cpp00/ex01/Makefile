@@ -26,7 +26,7 @@ INC					=	$(INC_PATH)/phone_book.hpp
 
 CPPFLAG				=	-std=c++98
 
-COMP				=	clang++ $(CPPFLAG) -Wall -Wextra -Werror
+COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror
 
 RM					=	rm -rf
 

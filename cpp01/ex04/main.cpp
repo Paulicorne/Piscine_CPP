@@ -45,7 +45,7 @@ int main (int ac, char **av)
         return (1);
     }
 
-    std::ofstream out((Filename + std::string(".replace")).c_str()); // Output file stream, creates [Filename].replace
+    std::ofstream out((Filename + std::string(".replace")).c_str()); // out = Output file stream, creates [Filename].replace
     if (out.fail())
     {
         std::cout << "Error: creating file" << std::endl;
@@ -61,10 +61,11 @@ int main (int ac, char **av)
 			// std::string::append is special : depending on the number of args you give it, the function will behave differently :
             str.append(buffer, first_pos, pos - first_pos);				// here it appends a copy of a substring (beginning at first_pos/ending with a len of pos-first_pos) of str.
             str.append(s2);												// here it appends a copy of s2
-            first_pos = pos + s1.size();	// Update first_pos : 
+            first_pos = pos + s1.size();	// Update first_pos to continue loop on next buffer/line
         }
         str.append(buffer, first_pos);		// Appends a copy of the first n characters in the array of characters pointed by s.
-        str.append("\n");
+        if (!currentFile.eof())             // Makes shure to not put an extra new line at end of file.
+            str.append("\n");
     }
     out << str;
     currentFile.close();					// Redirecting our modified str into output file stream

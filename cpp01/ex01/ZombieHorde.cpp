@@ -6,7 +6,7 @@
 /*   By: pmillet <milletp.pro@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:42:08 by pmillet           #+#    #+#             */
-/*   Updated: 2022/02/02 15:17:53 by pmillet          ###   ########.fr       */
+/*   Updated: 2022/02/21 14:58:33 by pmillet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 
 Zombie *zombieHorde(int N, std::string name)
 {
-	Zombie *horde = new Zombie[N];
+	std::cout << "Creating horde on the heap" << std::endl << std::endl;
+	Zombie *horde = new Zombie[N];	// only 1 allocation via new[]
 	
 	for (int i=0; i < N; i++)
+	{
 		horde[i].setName(name);
-	return(horde);
+	}	
+	return(horde);					//returns 1st element of the array
 }

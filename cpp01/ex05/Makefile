@@ -23,7 +23,7 @@ OBJ_PATH			=	.obj
 
 CPPFLAG				=	-std=c++98
 
-COMP				=	clang++ $(CPPFLAG) -Wall -Wextra -Werror
+COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror
 
 RM					=	rm -rf
 

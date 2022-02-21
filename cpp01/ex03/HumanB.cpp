@@ -10,7 +10,6 @@ HumanB::~HumanB()
 {
 }
 
-	// if(this->_weapon == NULL)
 Weapon& HumanB::getWeapon (void) const
 {
 	return (*(this->_bWeapon));
@@ -27,8 +26,6 @@ bool HumanB::setWeapon(Weapon& newWeapon)
 	this->_bWeapon = &newWeapon;
 	return(true);
 }
-
-
 
 void	HumanB::attack(void) const
 {

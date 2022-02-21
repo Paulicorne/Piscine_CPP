@@ -12,7 +12,7 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	brain
+EXE					=	uselessViolence
 
 SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp\
@@ -25,7 +25,7 @@ OBJ_PATH			=	.obj
 
 CPPFLAG				=	-std=c++98
 
-COMP				=	clang++ $(CPPFLAG) -Wall -Wextra -Werror
+COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror
 
 RM					=	rm -rf
 

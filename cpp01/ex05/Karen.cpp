@@ -30,7 +30,7 @@ void	Karen::complain( std::string level )
 			"WARNING",
 			"ERROR"
 		};
-	void (Karen::*ptr_complain[4]) (void) = { // tableau de pointeur sur méthodes membres dans la quelle on stock nos fonctions 
+	void (Karen::*ptr_complain[4]) (void) = { // array of pointers on methods (our funcitons) 
 			&Karen::debug,
 			&Karen::info,
 			&Karen::warning,
@@ -39,7 +39,7 @@ void	Karen::complain( std::string level )
 
 	for(int i = 0; i != 4; i++)
 	{
-		if(level == complaint_level[i])
-			(this->*ptr_complain[i])(); //syntaxe pour appeller une fonction qui est stockée dans un tableau
+		if(level == complaint_level[i])	// identifies if the level parameter passed matches Karen's levels
+			(this->*ptr_complain[i])(); // calls the corresponding method, stored in the array we just created above
   	}
 }
