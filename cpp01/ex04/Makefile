@@ -12,7 +12,7 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	program
+EXE					=	replace
 
 SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp

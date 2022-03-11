@@ -12,7 +12,7 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	fixedBetter
+EXE					=	a.out
 
 SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp\

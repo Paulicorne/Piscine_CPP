@@ -43,6 +43,7 @@ Fixed::~Fixed()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
+/* COMPARE */
 Fixed &	Fixed::operator=( Fixed const & rhs )
 {
 	std::cout << "Copy assignment operator called" << std::endl;
@@ -53,6 +54,51 @@ Fixed &	Fixed::operator=( Fixed const & rhs )
 	return *this;
 }
 
+/* ARITHMETICS */
+
+Fixed Fixed::operator*( Fixed const & rhs )
+{
+	std::cout << "Multiplication operator overload used" << std::endl;
+	std::cout << "Multiplies " << this->_val << " by " << rhs._val << std::endl;
+
+	Fixed	result(this->_val);
+
+	// result(this);
+	result._val = result._val * rhs._val;
+	return result;
+}
+
+
+/* Pre/post INCREMENT/DE-CREMENT */
+
+//what to return ? Fixed ?
+Fixed &	Fixed::operator++( void ) // Prefix increment, ++i
+{
+	// if ( !this->val )
+	// {
+	// 	std::cout << "Value not initialised, can't increment it." << std::endl;
+	// 	return(1);
+	// }
+	this->_val++;
+	std::cout << "Pre-incremented" << std::endl;
+	return *this;
+}
+
+Fixed Fixed::operator++( int ) // Postfix increment, i++
+{
+	// if ( !this->val )
+	// {
+	// 	std::cout << "Value not initialised, can't increment it." << std::endl;
+	// 	return(1);
+	// }
+	Fixed tmp = *this;
+	++*this;
+
+	std::cout << "Post-incremented" << std::endl;
+	return tmp;
+}
+
+/* OTHER */
 std::ostream &operator<<( std::ostream &out, Fixed const &rhs ) //qui insère une représentation en virgule flottante du nombre à virgule fixe dans le flux de sortie (objet output stream) passé en paramètre.
 {
 	out << rhs.toFloat();

@@ -19,6 +19,11 @@ class Fixed
 		Fixed &		operator=( Fixed const & rhs );
 		Fixed &		operator<<( Fixed const & rhs ); // insère une représentation en vir- gule flottante du nombre à virgule fixe dans le flux de sortie (objet output stream) passé en paramètre.
 
+		Fixed &		operator++( void );
+		Fixed		operator++( int );
+
+		Fixed		operator*( Fixed const & rhs );
+
 		int		getRawBits(void) const;			// retourne la valeur du nombre à virgule fixe sans la convertir
 		void	setRawBits(int	const	raw);	// initialise la valeur du nombre à virgule fixe avec celle passée en paramètre
 

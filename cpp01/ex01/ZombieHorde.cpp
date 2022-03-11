@@ -6,7 +6,7 @@
 /*   By: pmillet <milletp.pro@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:42:08 by pmillet           #+#    #+#             */
-/*   Updated: 2022/02/21 14:58:33 by pmillet          ###   ########.fr       */
+/*   Updated: 2022/02/24 10:32:19 by pmillet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ Zombie *zombieHorde(int N, std::string name)
 	{
 		horde[i].setName(name);
 	}	
-	return(horde);					//returns 1st element of the array
+	return(horde);					// returns pointer on 1st element of the array
 }
