@@ -11,27 +11,27 @@ class Fixed
 	public:
 
 		Fixed();
-		Fixed(int const nb);	// prenant un entier constant en paramètre et qui convertit celui- ci en virgule fixe. Le nombre de bits de la partie fractionnaire est initialisé à 8 comme dans l’exercice 00
-		Fixed(float const nb);	// prenant un flottant constant en paramètre et qui convertit celui-ci en virgule fixe. Le nombre de bits de la partie fractionnaire est initialisé à 8 comme dans l’exercice 00.
+		Fixed(int const nb);
+		Fixed(float const nb);
 		Fixed( Fixed const & src );
 		~Fixed();
 
 		Fixed &		operator=( Fixed const & rhs );
-		Fixed &		operator<<( Fixed const & rhs ); // insère une représentation en vir- gule flottante du nombre à virgule fixe dans le flux de sortie (objet output stream) passé en paramètre.
+		Fixed &		operator<<( Fixed const & rhs ); // permet d'envoyer un Fixed à std::cout par exemple
 
-		int		getRawBits(void) const;			// retourne la valeur du nombre à virgule fixe sans la convertir
-		void	setRawBits(int	const	raw);	// initialise la valeur du nombre à virgule fixe avec celle passée en paramètre
+		int		getRawBits(void) const;
+		void	setRawBits(int	const	raw);
 
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
 
 	private:
 
-		int					_val;				// valeur du nombre en virgule fixe
-		const static int 	_nb_frac_bits = 8;	// nombre de bits de la partie fractionnaire
+		int					_val;
+		const static int 	_nb_frac_bits = 8;
 
 };
 
-std::ostream &			operator<<( std::ostream & o, Fixed const & i );
+std::ostream &			operator<<( std::ostream & o, Fixed const & i ); // has to be non-member to use std::ostream type as input without using "friend" keyword
 
 #endif /* *********************************************************** FIXED_H */

@@ -7,25 +7,24 @@
 Fixed::Fixed() : _val(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	//this->_val = 0; // this would be an alternative to the above " : _val(0)" but takes more lines ...
 }
 
-// prenant un entier constant en paramètre et qui convertit celui- ci en virgule fixe. Le nombre de bits de la partie fractionnaire est initialisé à 8 comme dans l’exercice 00
-Fixed::Fixed(int const nb) : _val(nb << this->_nb_frac_bits)	// _val = nb * 256 (1 shift = *2, 8 shifts = *256 ?) ?
+Fixed::Fixed(int const nb) : _val(nb << this->_nb_frac_bits)
 {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(float const nb) : _val(roundf(nb * (1 << this->_nb_frac_bits)))
+// same method as above, but we have to round result to be sure not get rid of remaining decimal data after shifting the bits.
+Fixed::Fixed(float const nb)  // :_val(roundf(nb * (1 << this->_nb_frac_bits))) // this works too, but isn't really readable
 {
 	std::cout << "Float constructor called" << std::endl;
+	this->_val = (roundf(nb * (1 << this->_nb_frac_bits)));
 }
 
 Fixed::Fixed( const Fixed & src )
 {
 	std::cout << "Copy constructor called" << std::endl;
 	this->operator=(src);
-	//*this = src;
 }
 
 
@@ -43,7 +42,6 @@ Fixed::~Fixed()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-/* COMPARE */
 Fixed &	Fixed::operator=( Fixed const & rhs )
 {
 	std::cout << "Copy assignment operator called" << std::endl;
@@ -54,52 +52,94 @@ Fixed &	Fixed::operator=( Fixed const & rhs )
 	return *this;
 }
 
-/* ARITHMETICS */
+/* COMPARE */
+/* rhs = right hand side (of the equation) */
 
-Fixed Fixed::operator*( Fixed const & rhs )
+bool Fixed::operator>(Fixed const &rhs) const
 {
-	std::cout << "Multiplication operator overload used" << std::endl;
-	std::cout << "Multiplies " << this->_val << " by " << rhs._val << std::endl;
-
-	Fixed	result(this->_val);
-
-	// result(this);
-	result._val = result._val * rhs._val;
-	return result;
+    return this->_val > rhs.getRawBits();
+}
+bool Fixed::operator<(Fixed const &rhs) const
+{
+    return this->_val < rhs.getRawBits();
 }
 
 
-/* Pre/post INCREMENT/DE-CREMENT */
+bool Fixed::operator>=(Fixed const &rhs) const
+{
+    return this->_val >= rhs.getRawBits();
+}
+bool Fixed::operator<=(Fixed const &rhs) const
+{
+    return this->_val <= rhs.getRawBits();
+}
+bool Fixed::operator==(Fixed const &rhs) const
+{
+    return this->_val == rhs.getRawBits();
+}
+bool Fixed::operator!=(Fixed const &rhs) const
+{
+    return this->_val != rhs.getRawBits();
+}
 
-//what to return ? Fixed ?
+/* ARITHMETICS */
+/* Here we use toFloat method to work with our "real" values (not raw bits stored in this._value) & keep our decimal parts */
+/* Args must be const ohterwise it doesn't compile : indeed you can't change right hand  */
+/* rht = right hand term (multiplier, added or subtracted value etc.) */
+
+Fixed Fixed::operator*(Fixed const &rht) const
+{
+	std::cout << "Multiplication operator overload used" << std::endl;
+	return Fixed(this->toFloat() * rht.toFloat());
+}
+Fixed Fixed::operator/(Fixed const &rht) const
+{
+    return Fixed(this->toFloat() / rht.toFloat());
+}
+
+Fixed Fixed::operator+(Fixed const &rht) const
+{
+    return Fixed(this->toFloat() + rht.toFloat());
+}
+Fixed Fixed::operator-(Fixed const &rht) const
+{
+    return Fixed(this->toFloat() - rht.toFloat());
+}
+
+
+/* INCREMENTATION */
+
 Fixed &	Fixed::operator++( void ) // Prefix increment, ++i
 {
-	// if ( !this->val )
-	// {
-	// 	std::cout << "Value not initialised, can't increment it." << std::endl;
-	// 	return(1);
-	// }
 	this->_val++;
-	std::cout << "Pre-incremented" << std::endl;
 	return *this;
 }
 
 Fixed Fixed::operator++( int ) // Postfix increment, i++
 {
-	// if ( !this->val )
-	// {
-	// 	std::cout << "Value not initialised, can't increment it." << std::endl;
-	// 	return(1);
-	// }
 	Fixed tmp = *this;
 	++*this;
-
-	std::cout << "Post-incremented" << std::endl;
 	return tmp;
 }
 
-/* OTHER */
-std::ostream &operator<<( std::ostream &out, Fixed const &rhs ) //qui insère une représentation en virgule flottante du nombre à virgule fixe dans le flux de sortie (objet output stream) passé en paramètre.
+/* DECREMENTATION */
+
+Fixed & Fixed::operator--(void)
+{
+    this->_val--;
+    return *this;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp = *this;
+    --(*this);
+    return tmp;
+}
+
+/* INSERT to std::ostream */
+/* only way to use std::ostream type as input without using "friend" keyword */
+std::ostream &operator<<( std::ostream &out, Fixed const &rhs ) 
 {
 	out << rhs.toFloat();
 	return(out);
@@ -116,20 +156,46 @@ float	Fixed::toFloat( void ) const
 
 int		Fixed::toInt( void ) const
 {
-	return (this->_val >> this-> _nb_frac_bits); // shifts bits to the right, to ignore fractionnal part
+	return (this->_val >> this-> _nb_frac_bits); // shifts bits to the right, to get the real value
 }
+
+
+Fixed Fixed::min(Fixed &lhs, Fixed &rhs) 
+{
+    //std::cout << "Works w/ non-const args, awesome !" << std::endl;
+    return ((lhs.toFloat() > rhs.toFloat()) ? rhs : lhs);
+}
+
+Fixed Fixed::max(Fixed &lhs, Fixed &rhs)
+{
+    //std::cout << "Works w/ non-const args, awesome !" << std::endl;
+    return ((lhs.toFloat() > rhs.toFloat()) ? lhs : rhs);
+}
+
+Fixed Fixed::min(Fixed const &lhs, Fixed const &rhs) 
+{
+    //std::cout << "Works w/ const args, brilliant !" << std::endl;
+	return ((lhs.toFloat() > rhs.toFloat()) ? rhs : lhs);
+}
+
+Fixed Fixed::max(Fixed const &lhs, Fixed const &rhs)
+{
+    //std::cout << "Works w/ const args, brilliant !" << std::endl;
+    return ((lhs.toFloat() > rhs.toFloat()) ? lhs : rhs);
+}
+
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-int		Fixed::getRawBits(void) const			// retourne la valeur du nombre à virgule fixe sans la convertir
+int		Fixed::getRawBits(void) const
 {
 	return(this->_val);
 }
 
-// void	Fixed::setRawBits(int	const	raw)	// initialise la valeur du nombre à virgule fixe avec celle passée en paramètre
-// {
-// 	this->_val = raw;
-// }
+void	Fixed::setRawBits(int	const	raw)
+{
+	this->_val = raw;
+}
 /* ************************************************************************** */

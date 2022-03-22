@@ -4,7 +4,7 @@ int main(void)
 {
 	std::string msg = "HI THIS IS BRAIN";
 
-	std::string* stringPTR = &msg; // giving variable's adress to the pointer
+	std::string* stringPTR = &msg; // giving variable's address to the pointer
 	std::string& stringREF = msg; // giving variable to the reference
 	
 	/*	it's impossible to declare a reference without initializing it : */
@@ -13,7 +13,7 @@ int main(void)
 	/* prints addresses */
 
 	std::cout << &msg << std::endl;
-	std::cout << stringPTR << std::endl; // bc a pointer is actually just an adress.
+	std::cout << stringPTR << std::endl; // bc a pointer is actually just an address.
 	std::cout << &stringREF << std::endl << std::endl; // getting stringREF's address, and stringREF is the same thing as msg, the initial value.
 
 	/* prints value itself */

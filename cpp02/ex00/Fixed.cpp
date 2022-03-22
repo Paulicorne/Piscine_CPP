@@ -50,7 +50,7 @@ Fixed &				Fixed::operator=( Fixed const & rhs )
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-int		Fixed::getRawBits(void) const			// retourne la valeur du nombre à virgule fixe sans la convertir
+int		Fixed::getRawBits(void) const			// retourne la valeur brute stockée, sans la convertir
 {
 	std::cout << "getRawBits member fuction called" << std::endl;
 	return(this->_val);

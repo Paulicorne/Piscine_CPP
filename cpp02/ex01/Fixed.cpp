@@ -7,10 +7,8 @@
 Fixed::Fixed() : _val(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	//this->_val = 0; // this would be an alternative to the above " : _val(0)" but takes more lines ...
 }
 
-// prenant un entier constant en paramètre et qui convertit celui- ci en virgule fixe. Le nombre de bits de la partie fractionnaire est initialisé à 8 comme dans l’exercice 00
 Fixed::Fixed(int const nb) : _val(nb << this->_nb_frac_bits)	// _val = nb * 256 (1 shift = *2, 8 shifts = *256 ?) ?
 {
 	std::cout << "Int constructor called" << std::endl;
@@ -25,7 +23,6 @@ Fixed::Fixed( const Fixed & src )
 {
 	std::cout << "Copy constructor called" << std::endl;
 	this->operator=(src);
-	//*this = src;
 }
 
 
@@ -53,7 +50,8 @@ Fixed &	Fixed::operator=( Fixed const & rhs )
 	return *this;
 }
 
-std::ostream &operator<<( std::ostream &out, Fixed const &rhs ) //qui insère une représentation en virgule flottante du nombre à virgule fixe dans le flux de sortie (objet output stream) passé en paramètre.
+/* avoiding forbidden keyword "friend" by having this method be a non-member */
+std::ostream &operator<<( std::ostream &out, Fixed const &rhs )
 {
 	out << rhs.toFloat();
 	return(out);
@@ -77,13 +75,14 @@ int		Fixed::toInt( void ) const
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-int		Fixed::getRawBits(void) const			// retourne la valeur du nombre à virgule fixe sans la convertir
+int		Fixed::getRawBits(void) const
 {
 	return(this->_val);
 }
 
-// void	Fixed::setRawBits(int	const	raw)	// initialise la valeur du nombre à virgule fixe avec celle passée en paramètre
-// {
-// 	this->_val = raw;
-// }
+void	Fixed::setRawBits(int	const	raw)
+{
+	this->_val = raw;
+}
+
 /* ************************************************************************** */
