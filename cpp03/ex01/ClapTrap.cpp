@@ -49,7 +49,8 @@ ClapTrap &				ClapTrap::operator=( ClapTrap const & rhs )
 		this->setDamage(rhs.getDamage());
 		this->setHitPts(rhs.getHitPts());
 		this->setNrgPts(rhs.getNrgPts());
-	})
+	}
+	std::cout << "ClapTrap " << this->getName() << " has now ClapTrap " << rhs.getName() << "'s attributes !" << std::endl;
 	return *this;
 }
 
@@ -104,7 +105,7 @@ void 			ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << this->getName() << " has no Energy Points left, too bad !" << std::endl;
 		return;
 	}
-	std::cout << "ClapTrap " << this->getName() << " is repairing itself." << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " is repairing itself by " << amount << " points." << std::endl;
 	this->_hitPts += amount;
 	this->_nrgPts--;
 	std::cout << "ClapTrap " << this->getName() << " has now " << this->getHitPts() << " hit points left." << std::endl;
@@ -128,9 +129,9 @@ int					ClapTrap::getHitPts(void) const
 {
 	return(this->_hitPts);
 }
-void				ClapTrap::setHitPts(int const knock)
+void				ClapTrap::setHitPts(int const life)
 {
-	this->_hitPts -= knock;
+	this->_hitPts = life;
 }
 
 int					ClapTrap::getNrgPts(void) const
