@@ -13,7 +13,7 @@ int main( void )
 
 	a.attack("a cat");
 
-	std::cout << "A cat strikes back, hitting " << a.getName() << ", causing " << ennemy_dmg << " points of damage to " << a.getName() << "." << std::endl;
+	std::cout << "A cat strikes back, hitting " << a.getName() << ", with a force of " << ennemy_dmg << " points of damage." << std::endl;
 	a.takeDamage(ennemy_dmg);
 	std::cout << std::endl;
 

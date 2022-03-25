@@ -6,6 +6,7 @@
 
 ClapTrap::ClapTrap()
 {
+	this->_name = "Default";
 	this->_damage = 0;
 	this->_hitPts = 10;
 	this->_nrgPts = 10;
@@ -50,6 +51,7 @@ ClapTrap &				ClapTrap::operator=( ClapTrap const & rhs )
 		this->setHitPts(rhs.getHitPts());
 		this->setNrgPts(rhs.getNrgPts());
 	}
+	std::cout << "ClapTrap " << this->getName() << " has now ClapTrap " << rhs.getName() << "'s attributes !" << std::endl;
 	return *this;
 }
 
@@ -79,7 +81,6 @@ void 			ClapTrap::attack(const std::string& target)
 	this->_nrgPts--;
 	std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage !"<< std::endl;
 }
-
 void 			ClapTrap::takeDamage(unsigned int amount)
 {
 	std::cout << "ClapTrap " << this->getName() << " receives " << amount << " damage." << std::endl;
@@ -130,9 +131,9 @@ int					ClapTrap::getHitPts(void) const
 {
 	return(this->_hitPts);
 }
-void				ClapTrap::setHitPts(int const knock)
+void				ClapTrap::setHitPts(int const life)
 {
-	this->_hitPts -= knock;
+	this->_hitPts = life;
 }
 
 int					ClapTrap::getNrgPts(void) const

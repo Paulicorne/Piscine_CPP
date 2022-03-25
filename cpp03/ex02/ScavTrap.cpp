@@ -10,7 +10,7 @@ ScavTrap::ScavTrap( const std::string& name )
 {
 	this->setName(name);
 
-	/* this notation compiles but has no effect */
+	/* this does not compile because these are private attributes from ClapTrap */
 	// this->_damage = 20;
 	// this->_hitPts = 100;
 	// this->_nrgPts = 50;
@@ -82,7 +82,7 @@ void ScavTrap::attack(const std::string& target)
 		return;
 	}
 	this->setNrgPts(this->getNrgPts() - 1);
-	std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage !"<< std::endl;
+	std::cout << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage !"<< std::endl;
 }
 
 /*
