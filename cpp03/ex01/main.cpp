@@ -57,8 +57,14 @@ int main( void )
 	std::cout << std::endl;
 
 	b.beRepaired(heal);
+	std::cout << std::endl;
 
 	ScavTrap	d(b); // like the "=" operator, this works because they are both ScavTraps
-	//ScavTrap	e(a); // but his won't because "a" is a ClapTrap, ScavTrap class has no such copy constructor
+	ScavTrap	e(d);
+	std::cout << d.getName() << " has initially " << d.getHitPts() << " hit points (life)." << std::endl;
+	std::cout << d.getName() << " has initially " << d.getNrgPts() << " energy points (mana, action points)." << std::endl;
+	std::cout << d.getName() << " has initially " << d.getDamage() << " damage (hit points made to ennemies)." << std::endl;
+	std::cout << std::endl;
+	//ScavTrap	f(a); // but his won't because "a" is a ClapTrap, ScavTrap class has no such copy constructor
 	return 0;
 }

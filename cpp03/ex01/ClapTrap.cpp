@@ -46,6 +46,7 @@ ClapTrap &				ClapTrap::operator=( ClapTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
+		this->setName(rhs.getName() + "'s copy");
 		this->setDamage(rhs.getDamage());
 		this->setHitPts(rhs.getHitPts());
 		this->setNrgPts(rhs.getNrgPts());

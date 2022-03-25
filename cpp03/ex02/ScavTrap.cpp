@@ -82,7 +82,7 @@ void ScavTrap::attack(const std::string& target)
 		return;
 	}
 	this->setNrgPts(this->getNrgPts() - 1);
-	std::cout << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage !"<< std::endl;
+	std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage !"<< std::endl;
 }
 
 /*

@@ -57,7 +57,7 @@ int main( void )
 	a.beRepaired(heal);
 
 	ScavTrap	d(b); // like the "=" operator, this works because they are both ScavTraps
-	//ScavTrap	e(a); // but his won't because "a" is a ClapTrap, ScavTrap class has no such copy constructor
+	//ScavTrap	z(a); // but his won't because "a" is a ClapTrap, ScavTrap class has no such copy constructor
 	std::cout << std::endl;
 
 	FragTrap	e("Cletus");
@@ -73,6 +73,9 @@ int main( void )
 	std::cout << "This bloody cat strikes back again, hitting " << e.getName() << ", causing it " << ennemy_dmg << " points of damage." << std::endl;
 	e.takeDamage(ennemy_dmg);
 	std::cout << std::endl;
+
+	FragTrap f(e); // this calls ClapTrap's copy constructor
+	//FragTrap g(a); // this won't compile bc FragTrap has no copy constructor wich takes ClapTrap as argument
 
 	return 0;
 }
