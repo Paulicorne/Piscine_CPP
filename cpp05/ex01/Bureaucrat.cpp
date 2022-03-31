@@ -90,6 +90,27 @@ void			Bureaucrat::demote(void)
 	}
 }
 
+void	Bureaucrat::signForm(Form form) const
+{
+// 	. Si le formulaire est signé, elle affichera quelque chose comme :
+// <bureaucrat> signed <form>
+// Ou dans le cas contraire :
+// <bureaucrat> couldn’t sign <form> because <reason>.
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	// catch(Bureaucrat::AlreadySignedException &e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
+	
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

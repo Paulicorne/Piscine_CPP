@@ -4,6 +4,9 @@
 # include <iostream>
 # include <string>
 # include <stdexcept>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -22,6 +25,9 @@ class Bureaucrat
 
 		void			promote(void);
 		void			demote(void);
+
+		void			signForm(Form form) const;
+
 		class	GradeTooHighException : public std::exception 
 		{
         	public:
@@ -33,6 +39,11 @@ class Bureaucrat
         	public:
         	    virtual const char* what() const throw(); // "throw", at the end of a function definition
 				// It means this Throw instruction can throw something or not
+		};
+		class AlreadySignedException : public std::exception
+		{
+			public :
+				virtual const char* what() const throw();
 		};
 
 	private:
