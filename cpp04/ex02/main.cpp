@@ -22,4 +22,27 @@ int main()
 	delete (j);
     delete (i);
     //delete (meta);
+
+    	/* DEEPCOPY TESTS */
+
+	Dog	dog;
+	{
+		Dog tmp = dog;
+		std::cout << "Tmp dog's brain adress is : " << std::endl;
+		std::cout << tmp.getBrain() << std::endl;
+	}
+
+	std::cout << "Dog's brain adress is : " << std::endl;
+	std::cout << dog.getBrain() << std::endl;
+
+	std::cout << std::endl;
+	Cat	cat;
+	{
+		Cat tmp = cat;
+		std::cout << "Tmp cat's brain adress is : " << std::endl;
+		std::cout << tmp.getBrain() << std::endl;
+	}
+
+	std::cout << "Cat's brain adress is : " << std::endl;
+	std::cout << cat.getBrain() << std::endl;
 }

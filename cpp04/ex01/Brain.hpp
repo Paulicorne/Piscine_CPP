@@ -11,7 +11,7 @@ class Brain
 
 		Brain();
 		Brain( Brain const & src );
-		virtual ~Brain();
+		~Brain();
 
 		Brain &		operator=( Brain const & rhs );
 

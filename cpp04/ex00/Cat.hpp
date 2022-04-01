@@ -14,8 +14,8 @@ class Cat : public Animal
 		// Cat( Cat const & src );
 		/*virtual*/ ~Cat();
 
-		Cat &		operator=( Cat const & rhs );
-		/* virtual*/ void		makeSound() const; // we could make it virtual as well, so we could add a derived class if we wanted !
+		Cat &			operator=( Cat const & rhs );
+		virtual void	makeSound() const; // with "virtual" we could add a derived class if we wanted !
 
 	private:
 

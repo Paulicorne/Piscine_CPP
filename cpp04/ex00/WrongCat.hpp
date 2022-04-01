@@ -15,7 +15,7 @@ class WrongCat : public WrongAnimal
 		virtual ~WrongCat(); // derived class can have virtual keyword, as long as parent is not, it won't override the function.
 
 		WrongCat &	operator=( WrongCat const & rhs );
-		virtual void		makeSound() const; // virtual here would only work for a class derived from WrongCat.
+		/*virtual*/ void		makeSound() const; // virtual here would only work for a class derived from WrongCat.
 
 	private:
 

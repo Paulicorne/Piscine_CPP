@@ -34,9 +34,10 @@ int main()
 
     std::cout << std::endl;
 
-    /* WHAT IF WE CODE NORMALLY INSTEAD OF USING POINTERS EVERYWHERE ? */
-    /* Spoiler : as seen in perviouses exercices, we don't need "virtual" with these initializations. But you never know what you'll need in your code */
-    /* => Gotta take the habit to put "virtual" on parent classes !*/
+    /* WHAT IF WE CREATE A WRONGCAT DIRECTLY ? */
+    /* We don't need "virtual" with these initializations to make the right call to the right function.
+    /* But you never know how you'll need to create your instances in your code */
+    /* => It's better to take the habit to put "virtual" on parent classes !*/
     
     Animal animal;
     Cat cat;

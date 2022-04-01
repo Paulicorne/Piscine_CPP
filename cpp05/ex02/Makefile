@@ -16,13 +16,17 @@ EXE					=	a.out
 
 SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp\
-						Animal.cpp\
-						Cat.cpp\
-						Dog.cpp\
-						Brain.cpp
+						Form.cpp\
+						ShrubberyCreationForm.cpp\
+						Bureaucrat.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
 OBJ_PATH			=	.obj
+
+INC_PATH			=	.
+INC_FILE			=	Bureaucrat.hpp\
+						Form.hpp
+INC					=	$(addprefix $(INC_PATH)/, $(INC_FILE))
 
 CPPFLAG				=	-std=c++98
 
@@ -33,8 +37,8 @@ RM					=	rm -rf
 all					:	$(EXE)
 
 $(EXE)				:	$(SRCS)
-						@$(COMP) $(SRCS) -o $(EXE)
-						@printf "$(ERASE)$(GREEN)$(EXE)\t\t-->\tCREATE\n$(END)"
+						$(COMP) -I./ $(SRCS) -o $(EXE)
+						printf "$(ERASE)$(GREEN)$(EXE)\t\t-->\tCREATE\n$(END)"
 
 clean				:
 						@$(RM) $(EXE)

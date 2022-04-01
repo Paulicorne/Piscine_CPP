@@ -3,6 +3,8 @@
 
 int main()
 {
+	/* => add copy constructor tests !!!!! */
+
 	Form a;
 
 	std::cout << a;
@@ -22,7 +24,7 @@ int main()
 
 	try
 	{
-		Form c("Laissez-passer A38", false, -1, 1500);
+		Form c("Laissez-passer A38", false, -1, 15); // grade too high
 		/* 1st line throws error, other ones are not executed, block is stopped here */
 		std::cout << "This won't be printed because of the error thrown by line above" << std::endl;
 	}
@@ -33,33 +35,26 @@ int main()
 
 	try
 	{
-		Form d("Laissez-passer A38", false, 1500, 1500);
-		/* 1st line throws error, other ones are not executed, block is stopped here */
-		Form e("Laissez-passer A38", false, 1, 1500);
-		Form f("Laissez-passer A38", false, 1, -1500);
+		Form d("Laissez-passer A38", false, 1500, 1500); // grade too low
 	}
 	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
-	/* INSERT OPERATOR TEST */
 	std::cout << std::endl;
+	std::cout << std::endl;
+
+	/* BE_SIGNED TEST */
 
 	Bureaucrat	Corenting("Corenting", 150);
 	Bureaucrat	Fabieng("Fabieng", 1);
-
-	std::cout << Corenting;
-	std::cout << Fabieng;
-
-	/* BE_SIGNED TEST */
 
 	Form b("A38", false, 149, 149);
 	std::cout << b << std::endl;
 
 	try
 	{
-		b.beSigned(Corenting);
+		b.beSigned(Corenting); // grade too low
 	}
 	catch (std::exception & e)
 	{
@@ -69,28 +64,52 @@ int main()
 
 	try
 	{
-		b.beSigned(Fabieng);
+		b.beSigned(Fabieng); // no error
 	}
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << b << std::endl;
+	std::cout << b << std::endl; // form is signed
+	std::cout << std::endl;
+	std::cout << std::endl;
 
-	// try
-	// {
-	// 	Fabieng.promote();
-	// }
-	// catch (std::exception & e)
-	// {
-	// 	std::cerr << e.what() << std::endl;
-	// }
-	// std::cout << std::endl;
+	/* SIGNFORM TEST */
 
-	/* GRADE TEST */
+	Form c("Cerfa n°986813", false, 149, 149);
+	std::cout << c << std::endl;
 
+	try
+	{
+		Corenting.signForm(c);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
+	try
+	{
+		Fabieng.signForm(c);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << c << std::endl;
+
+	/* ALREADY SIGNED TEST */
+	try
+	{
+		Fabieng.signForm(c);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
     return (0);
 }

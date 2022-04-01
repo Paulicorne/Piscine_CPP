@@ -18,7 +18,7 @@ class Animal
 		const std::string	getType() const;
 		void				setType(std::string newType);
 
-		virtual void				makeSound() const;
+		virtual void		makeSound() const; // this use of "virtual" makes shure derived classes use THEIR OWN implementation of the function
 
 	private:
 		std::string _type;
