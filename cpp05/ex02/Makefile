@@ -18,6 +18,7 @@ SRCS_PATH			=	.
 SRCS_FILE			=	main.cpp\
 						Form.cpp\
 						ShrubberyCreationForm.cpp\
+						RobotomyRequestForm.cpp\
 						Bureaucrat.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
@@ -38,7 +39,7 @@ all					:	$(EXE)
 
 $(EXE)				:	$(SRCS)
 						$(COMP) -I./ $(SRCS) -o $(EXE)
-						printf "$(ERASE)$(GREEN)$(EXE)\t\t-->\tCREATE\n$(END)"
+						@printf "$(ERASE)$(GREEN)$(EXE)\t\t-->\tCREATE\n$(END)"
 
 clean				:
 						@$(RM) $(EXE)

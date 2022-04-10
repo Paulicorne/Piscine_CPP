@@ -30,6 +30,7 @@ class Form
 		virtual void		execute( Bureaucrat const &executor ) const = 0;
 
 		void				setTarget( std::string target );
+		std::string			getTarget() const;
 
 		class	GradeTooHighException : public std::exception 
 		{

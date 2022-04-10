@@ -9,7 +9,7 @@ Form::Form() : _name("Default"), _signed(false), _signGrade(1), _execGrade(1)
 {
 }
 
-Form::Form( const Form & src ) : _name(src.getName()), _signed(false), _signGrade(src.getSignGrade()), _execGrade(src.getExecGrade())
+Form::Form( const Form & src ) : _name(src.getName()), _signed(false), _signGrade(src.getSignGrade()), _execGrade(src.getExecGrade()), _target(src.getTarget())
 {
 }
 
@@ -99,9 +99,14 @@ void		Form::execute( Bureaucrat const &executor ) const
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-void		Form::setTarget( std::string target )
+void				Form::setTarget( std::string target )
 {
 	this->_target = target;
+}
+
+std::string			Form::getTarget() const
+{
+	return (this->_target);
 }
 
 /* EXCEPTIONS */

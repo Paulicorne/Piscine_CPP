@@ -19,8 +19,8 @@ class ShrubberyCreationForm : public Form
 
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 
-		void	execute( Bureaucrat const &executor) const;
-		void	draw(Bureaucrat const &buro, std::string target) const;
+		void	execute( Bureaucrat const &executor) const; // subject requires const
+		void	draw(/*Bureaucrat const &buro, */std::string target) const;
 	private:
 	// make default constructor private ?
 		ShrubberyCreationForm();

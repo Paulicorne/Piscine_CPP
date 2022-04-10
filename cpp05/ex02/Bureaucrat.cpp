@@ -110,6 +110,24 @@ void	Bureaucrat::signForm(Form &form)
 	
 }
 
+// must try/catch execution
+// then display "<bureaucrat> executed <form>" OR error msg
+// but Form is const, remember to change _signed in further code (where ?)
+void	Bureaucrat::executeForm(Form const & form)
+{
+	try
+	{
+		// call execution method that checks authorizations
+		//form.beSigned(*this); can't call this bc form is const ...
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		
+	}
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
