@@ -14,7 +14,7 @@ class Form
 
 		Form();
 		Form( Form const & src );
-		Form( const std::string name, int signGrade, int execGrade );
+		Form( const std::string name, int signGrade, int execGrade, std::string target );
 		~Form();
 
 		Form &		operator=( Form const & rhs );
@@ -56,9 +56,9 @@ class Form
 
 	private:
 		const std::string	_name;
-		bool				_signed;
 		const int			_signGrade;
 		const int			_execGrade;
+		bool				_signed;
 		std::string			_target;
 };
 

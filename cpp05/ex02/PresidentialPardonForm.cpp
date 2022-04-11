@@ -1,4 +1,4 @@
-#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -6,15 +6,15 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("Robotomy Request Form", 72, 45, target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("Robotomy Request Form", 72, 45, target)
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("Robotomy Request Form", 72, 45, "Target")
+PresidentialPardonForm::PresidentialPardonForm() : Form("Robotomy Request Form", 72, 45, "Target")
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ) : Form(src)
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : Form(src)
 {
 }
 
@@ -23,7 +23,7 @@ RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ) : Fo
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::~RobotomyRequestForm()
+PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
@@ -38,20 +38,20 @@ RobotomyRequestForm::~RobotomyRequestForm()
 */
 
 // checks signature + checks authorizations
-void	RobotomyRequestForm::execute( Bureaucrat const &executor) const
+void	PresidentialPardonForm::execute( Bureaucrat const &executor) const
 {
 	try
 	{
 		Form::execute(executor);
-		RobotomyRequestForm::robotomize();
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
+	PresidentialPardonForm::pardon();
 }
 
-void	RobotomyRequestForm::robotomize() const
+void	PresidentialPardonForm::pardon() const
 {
 	int sucess;
 
@@ -59,7 +59,7 @@ void	RobotomyRequestForm::robotomize() const
 	sucess = rand();
 	std::cout << "* DRILL NOISES *" << std::endl;
 	if (sucess % 2)
-		throw RobotomyRequestForm::RobotimizationFailed();
+		throw PresidentialPardonForm::RobotimizationFailed();
 	else
 	{
 		std::cout << this->getTarget() << " is a robot now." << std::endl;
@@ -72,7 +72,7 @@ void	RobotomyRequestForm::robotomize() const
 
 /* EXEPTIONS */
 
-const char* RobotomyRequestForm::RobotimizationFailed::what() const throw()
+const char* PresidentialPardonForm::RobotimizationFailed::what() const throw()
 {
     return ("Robotomization failed !");
 }

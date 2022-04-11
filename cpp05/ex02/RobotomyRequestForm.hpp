@@ -17,16 +17,19 @@ class RobotomyRequestForm : public Form
 		RobotomyRequestForm( RobotomyRequestForm const & src );
 		~RobotomyRequestForm();
 
-		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
+		// using Form::operator=; // this is not allowed by subject but works as well
 
 		void	execute( Bureaucrat const &executor) const; // subject requires const
-		//void	draw(/*Bureaucrat const &buro, */std::string target) const;
-		void	robotomize(void);
+		void	robotomize(void) const;
+
+		class RobotimizationFailed : public std::exception
+		{
+			public :
+				virtual const char* what() const throw();
+		};
+
 	private:
-	// make default constructor private ?
 		RobotomyRequestForm();
 };
-
-// std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i );
 
 #endif /* ******************************************* ROBOTOMYREQUESTFORM_H */

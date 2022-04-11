@@ -5,16 +5,16 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Form::Form() : _name("Default"), _signed(false), _signGrade(1), _execGrade(1)
+Form::Form() : _name("Default name"), _signGrade(1), _execGrade(1), _signed(false), _target("Default target")
 {
 }
 
-Form::Form( const Form & src ) : _name(src.getName()), _signed(false), _signGrade(src.getSignGrade()), _execGrade(src.getExecGrade()), _target(src.getTarget())
+Form::Form( const Form & src ) : _name(src.getName()), _signGrade(src.getSignGrade()), _execGrade(src.getExecGrade()), _signed(false), _target(src.getTarget())
 {
 }
 
 
-Form::Form( const std::string name, int signGrade, int execGrade ) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
+Form::Form( const std::string name, int signGrade, int execGrade, std::string target ) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _signed(false), _target(target)
 {
 	std::cout << "Form parameter constructor called" << std::endl;
 	if (_signGrade > 150 || _execGrade > 150)
@@ -36,12 +36,12 @@ Form::~Form()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-// is this really enough ? That makes sense bc other attributes are private, but check again
 Form &				Form::operator=( Form const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->_signed = rhs._signed;
+		this->_target = rhs._target;
 	}
 	return *this;
 }
@@ -49,7 +49,7 @@ Form &				Form::operator=( Form const & rhs )
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
 	std::string is_signed = i.getSigned() == 0 ? "no" : "yes";
-	o << "Form \"" << i.getName() << "\" is signed : " << is_signed << ". Can be signed from grade : " << i.getSignGrade() << ", and can be executed from grade : " << i.getExecGrade() << std::endl;
+	o << "Form \"" << i.getName() << "\" with target \"" << i.getTarget() << "\" is signed : " << is_signed << ". Can be signed from grade : " << i.getSignGrade() << ", and can be executed from grade : " << i.getExecGrade() << std::endl;
 	return o;
 }
 
@@ -88,6 +88,7 @@ void				Form::beSigned(Bureaucrat const &buro)
 		this->_signed = true;
 }
 
+/* Checks executor's grade + if form is signed */
 void		Form::execute( Bureaucrat const &executor ) const
 {
 	if (executor.getGrade() > this->getExecGrade())

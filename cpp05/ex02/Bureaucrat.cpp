@@ -82,7 +82,6 @@ void			Bureaucrat::demote(void)
 		}
 		else
 			this->_grade++;
-		
 	}
 	catch (std::exception & e)
 	{
@@ -115,17 +114,20 @@ void	Bureaucrat::signForm(Form &form)
 // but Form is const, remember to change _signed in further code (where ?)
 void	Bureaucrat::executeForm(Form const & form)
 {
+	bool success = 0;
 	try
 	{
 		// call execution method that checks authorizations
-		//form.beSigned(*this); can't call this bc form is const ...
 		form.execute(*this);
-		std::cout << this->_name << " executed " << form.getName() << std::endl;
+		success = 1;
 	}
-	catch (const std::exception& e)
+	catch (const Form::GradeTooLowException& e)
 	{
-		
+		success = 0;
+		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
 	}
+	if (success == 1)
+		std::cout << this->_name << " executed this friggin " << form.getName() << std::endl;
 }
 
 /*
