@@ -22,12 +22,6 @@ class RobotomyRequestForm : public Form
 		void	execute( Bureaucrat const &executor) const; // subject requires const
 		void	robotomize(void) const;
 
-		class RobotimizationFailed : public std::exception
-		{
-			public :
-				virtual const char* what() const throw();
-		};
-
 	private:
 		RobotomyRequestForm();
 };

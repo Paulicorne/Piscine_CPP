@@ -96,38 +96,38 @@ void	Bureaucrat::signForm(Form &form)
 		form.beSigned(*this);
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 	}
-	catch(const std::exception& e)
+	catch(Form::GradeTooLowException& e)
 	{
 		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
 		// std::cerr << e.what() << '\n';
+	}	
+	catch (Form::NotYetSignedException &e)
+	{
+		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+		//std::cerr << e.what() << '\n';
 	}
-
-	// catch(Bureaucrat::AlreadySignedException &e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
-	
 }
 
 // must try/catch execution
 // then display "<bureaucrat> executed <form>" OR error msg
-// but Form is const, remember to change _signed in further code (where ?)
 void	Bureaucrat::executeForm(Form const & form)
 {
-	bool success = 0;
 	try
 	{
 		// call execution method that checks authorizations
 		form.execute(*this);
-		success = 1;
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
-	catch (const Form::GradeTooLowException& e)
+	catch (Form::GradeTooLowException &e)
 	{
-		success = 0;
-		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+		std::cout << this->getName() << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
+		//std::cerr << e.what() << '\n';
 	}
-	if (success == 1)
-		std::cout << this->_name << " executed this friggin " << form.getName() << std::endl;
+	catch (Form::NotYetSignedException &e)
+	{
+		std::cout << this->getName() << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
+		//std::cerr << e.what() << '\n';
+	}
 }
 
 /*

@@ -1,6 +1,7 @@
 # include "Bureaucrat.hpp"
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 # include "Form.hpp"
 
 int main()
@@ -13,15 +14,30 @@ int main()
 
 	Bureaucrat	Corenting("Corenting", 150);
 	Bureaucrat	Fabieng("Fabieng", 1);
-
-	a.execute(Corenting);
-	a.execute(Fabieng);
+	try
+	{
+		a.execute(Corenting); // Grade too low !
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	try
+	{
+		a.execute(Fabieng); // Not signed yet !
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	std::cout << std::endl;
 
 	//a.beSigned(Corenting); // have to catch the error to make this work properly
 	try
 	{
-		a.beSigned(Corenting); // grade too low
+		a.beSigned(Corenting); // Grade too low !
 	}
 	catch (std::exception & e)
 	{
@@ -29,21 +45,42 @@ int main()
 	}
 	std::cout << std::endl;
 
-	Corenting.signForm(a);
-	a.execute(Fabieng);
-
+	Corenting.signForm(a); // Grade too low !
 	Fabieng.signForm(a);
 	std::cout << std::endl;
 
-	a.execute(Corenting);
+	try
+	{
+		a.execute(Corenting); // Grade too low !
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	std::cout << std::endl;
-	a.execute(Fabieng);
 
-	std::cout << a;
+	try
+	{
+		a.execute(Fabieng); // creates file w/ tree
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	//std::cout << a; // if you want to check form's info
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+	Corenting.executeForm(a); // couldn't execute because ...
+	Fabieng.executeForm(a); // executed ...
+
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 
+
+
+	std::cout << "ROBOTOMY PART" << std::endl;
 	/* ROBOTOMY */
 
 	RobotomyRequestForm b("Jean-Jacques");
@@ -57,20 +94,69 @@ int main()
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-	Fabieng.signForm(b);
+	Fabieng.signForm(b); // signed form
 	std::cout << std::endl;
-	b.execute(Fabieng);
+	try
+	{
+		b.execute(Fabieng); // makes drill noises, fails half of the time
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	std::cout << std::endl;
-	std::cout << b;
+	//std::cout << b; // if you want to check form's info
 	std::cout << std::endl;
 
-	Fabieng.executeForm(b);
+	Fabieng.executeForm(b); // executed form
 	std::cout << std::endl;
-	Corenting.executeForm(b);
+	Corenting.executeForm(b); // couldn't execute because ...
 
+
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << "PARDON PART" << std::endl;
 	/* PRESIDENT'S PARDON */
 
+	PresidentialPardonForm d("Robert");
 	
+	Corenting.executeForm(d);
+	try
+	{
+		d.execute(Corenting);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	std::cout << std::endl;
+	Fabieng.executeForm(d);
+	try
+	{
+		d.execute(Fabieng);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	std::cout << std::endl;
+	d.beSigned(Fabieng); // silent signing method, doesn' print anything
+	//Fabieng.signForm(d); // signs and prints msg
+	std::cout << std::endl;
+	Fabieng.executeForm(d);
+	try
+	{
+		d.execute(Fabieng);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
     return (0);
 }

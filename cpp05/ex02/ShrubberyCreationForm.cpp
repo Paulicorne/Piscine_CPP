@@ -39,15 +39,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void	ShrubberyCreationForm::execute( Bureaucrat const &executor) const
 {
-	try
-	{
+	// try
+	// {
 		Form::execute(executor); // checks exec conditions (grade, signature)
 		ShrubberyCreationForm::draw(this->getTarget());
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
 } 
 
 /* create file w/ASCII stuff */

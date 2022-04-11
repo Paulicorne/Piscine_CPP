@@ -40,15 +40,10 @@ RobotomyRequestForm::~RobotomyRequestForm()
 // checks signature + checks authorizations
 void	RobotomyRequestForm::execute( Bureaucrat const &executor) const
 {
-	try
-	{
-		Form::execute(executor);
-		RobotomyRequestForm::robotomize();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+
+	Form::execute(executor);
+	RobotomyRequestForm::robotomize();
+
 }
 
 void	RobotomyRequestForm::robotomize() const
@@ -59,7 +54,7 @@ void	RobotomyRequestForm::robotomize() const
 	sucess = rand();
 	std::cout << "* DRILL NOISES *" << std::endl;
 	if (sucess % 2)
-		throw RobotomyRequestForm::RobotimizationFailed();
+		std::cout << "Robotomization of " << this->getTarget() << " failed ..." << std::endl;
 	else
 	{
 		std::cout << this->getTarget() << " is a robot now." << std::endl;
@@ -70,10 +65,4 @@ void	RobotomyRequestForm::robotomize() const
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-/* EXEPTIONS */
-
-const char* RobotomyRequestForm::RobotimizationFailed::what() const throw()
-{
-    return ("Robotomization failed !");
-}
 /* ************************************************************************** */

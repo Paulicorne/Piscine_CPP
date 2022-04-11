@@ -19,6 +19,7 @@ SRCS_FILE			=	main.cpp\
 						Form.cpp\
 						ShrubberyCreationForm.cpp\
 						RobotomyRequestForm.cpp\
+						PresidentialPardonForm.cpp\
 						Bureaucrat.cpp
 
 SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
