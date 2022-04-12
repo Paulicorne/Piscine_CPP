@@ -15,7 +15,7 @@ class Form
 		Form();
 		Form( Form const & src );
 		Form( const std::string name, int signGrade, int execGrade, std::string target );
-		~Form();
+		virtual ~Form(); // had to make this virtual to delete dynamically alloced Form
 
 		Form &		operator=( Form const & rhs );
 
@@ -25,8 +25,6 @@ class Form
 		int					getExecGrade() const;
 
 		void				beSigned(Bureaucrat const &buro);
-
-		/* adding a pure virtual func to make this class absctract */
 		virtual void		execute( Bureaucrat const &executor ) const = 0;
 
 		void				setTarget( std::string target );

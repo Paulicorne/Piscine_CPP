@@ -1,6 +1,9 @@
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
+#include <time.h>
+#include <cstdlib>
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
