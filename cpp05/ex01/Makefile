@@ -12,37 +12,39 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-EXE					=	a.out
+NAME				=	Form
 
-SRCS_PATH			=	.
-SRCS_FILE			=	main.cpp\
-						Form.cpp\
-						Bureaucrat.cpp
+SRCS				=	main.cpp Bureaucrat.cpp Form.cpp
 
-SRCS				=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILE))
-OBJ_PATH			=	.obj
+OBJ_PATH			=	obj
+OBJS				=	$(addprefix $(OBJ_PATH)/, $(SRCS:.cpp=.o))
 
 INC_PATH			=	.
-INC_FILE			=	Bureaucrat.hpp\
-						Form.hpp
-INC					=	$(addprefix $(INC_PATH)/, $(INC_FILE))
+INCS				=	Bureaucrat.hpp Form.hpp
 
 CPPFLAG				=	-std=c++98
-
 COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror
 
 RM					=	rm -rf
 
-all					:	$(EXE)
+$(OBJ_PATH)/%.o		:	%.cpp $(INCS)
+						@$(COMP) -c $< -o $@
+						@printf "$(ERASE)$(YELLOW)$@\t-->\tCREATED\n$(END)"
 
-$(EXE)				:	$(SRCS)
-						@$(COMP) -I./ $(SRCS) -o $(EXE)
-						@printf "$(ERASE)$(GREEN)$(EXE)\t\t-->\tCREATE\n$(END)"
+all					:	init $(NAME)
+init				:	
+						@mkdir -p $(OBJ_PATH)
+
+$(NAME)				:	$(OBJS)
+						$(COMP) $(OBJS) -o $(NAME)
+						@printf "$(ERASE)$(GREEN)$(NAME)\t\t-->\tCREATED\n$(END)"
 
 clean				:
-						@$(RM) $(EXE)
+						@$(RM) $(OBJ_PATH)
+						@printf "$(ERASE)$(GREEN)./$(OBJ_PATH)\t\t-->\tCLEANED\n$(END)"
 
 fclean				:	clean
+						@$(RM) $(NAME)
 
 re					: 	fclean all
 
