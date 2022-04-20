@@ -34,7 +34,6 @@ int main()
 	
 	std::cout << std::endl;
 
-	//a.beSigned(Corenting); // have to catch the error to make this work properly
 	try
 	{
 		a.beSigned(Corenting); // Grade too low !
@@ -145,7 +144,7 @@ int main()
 	}
 	
 	std::cout << std::endl;
-	d.beSigned(Fabieng); // silent signing method, doesn' print anything
+	d.beSigned(Fabieng); // silent signing method, doesn't print anything
 	//Fabieng.signForm(d); // signs and prints msg
 	std::cout << std::endl;
 	Fabieng.executeForm(d);

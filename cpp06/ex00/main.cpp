@@ -11,14 +11,7 @@ int	main(int ac, char *av[])
 		return (0);
 	}
 
-	double a = 8.9654;
-
-	double b = static_cast<int>(a);
-
-	std::cout << b << std::endl;
-
-	(void)av;
-	// Convert	c(av[1]);
-	// c.printConversion();	
+	Convert	c(av[1]);
+	c.printConv();	
 	return (0);
 }

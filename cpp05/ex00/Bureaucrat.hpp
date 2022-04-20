@@ -25,14 +25,13 @@ class Bureaucrat
 		class	GradeTooHighException : public std::exception 
 		{
         	public:
-        	    virtual const char* what() const throw(); // specifier Throw, at the end of a function definition
-				// It means this Throw instruction can throw something or not
+        	    virtual const char* what() const throw(); // "throw" makes it possible to throw something (or not)
+				// "what" func is inherited from std::exception and returns the explanatory string.
 		};
 		class	GradeTooLowException : public std::exception 
 		{
         	public:
-        	    virtual const char* what() const throw(); // "throw", at the end of a function definition
-				// It means this Throw instruction can throw something or not
+        	    virtual const char* what() const throw();
 		};
 
 	private:

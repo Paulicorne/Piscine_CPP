@@ -17,13 +17,6 @@ class Convert
 
 		Convert &		operator=( Convert const & rhs );
 
-		char *	getStr();
-		double	getVal();
-		float 	toFloat();
-		int		toInt();
-		char	toChar();
-		void	printConversion();
-
 		char *		getStr();
 		double		getValue();
 		float		toFloat();
@@ -33,7 +26,7 @@ class Convert
 
 	private:
 		char *	_str;
-		double	_val;
+		double	_val; // storing our value in the most precise type
 		bool	_dot;
 		bool	_only0;
 };

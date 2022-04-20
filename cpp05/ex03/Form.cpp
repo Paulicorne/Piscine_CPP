@@ -16,7 +16,6 @@ Form::Form( const Form & src ) : _name(src.getName()), _signGrade(src.getSignGra
 
 Form::Form( const std::string name, int signGrade, int execGrade, std::string target ) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _signed(false), _target(target)
 {
-	std::cout << "Form parameter constructor called" << std::endl;
 	if (_signGrade > 150 || _execGrade > 150)
 		throw	Form::GradeTooLowException();
 	if (_signGrade < 1 || _execGrade < 1)

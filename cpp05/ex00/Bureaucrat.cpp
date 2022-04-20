@@ -104,6 +104,8 @@ int				Bureaucrat::getGrade() const
 	return (this->_grade);
 }
 
+/* ************************************************************************** */
+
 /* EXCEPTIONS */
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -115,5 +117,3 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
     return ("Grade too low, try between 1 and 150");
 }
-
-/* ************************************************************************** */

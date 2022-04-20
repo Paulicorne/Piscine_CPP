@@ -36,6 +36,6 @@ int main()
     delete rrf;
     delete scf;
     delete ppf;
-    (void)gnf;
+    delete gnf; // not necessary bc it hasn't been dynamically alloced
     return (0);
 }
