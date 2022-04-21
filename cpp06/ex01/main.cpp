@@ -15,13 +15,17 @@ int	main (void)
 	Data*	data = new Data();
 	uintptr_t	raw;
 	
+
+	std::cout << "Initial data is :" << std::endl;
 	std::cout << data->_i;
 	std::cout << data->_c;
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 	raw = serialize(data);
 	data = deserialize(raw);
 
+	std::cout << "deserialized data is :" << std::endl;
 	std::cout << data->_i;
 	std::cout << data->_c;
 	std::cout << std::endl;

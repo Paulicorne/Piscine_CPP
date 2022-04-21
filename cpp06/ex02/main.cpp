@@ -7,32 +7,109 @@
 # include <iostream>
 # include <string>
 
-// crée aléatoirement une instance de A, B ou C et la retourne en tant que pointeur sur Base. Utilisez ce que vous souhaitez pour l’implémentation du choix aléatoire.
+Base*	makeA()
+{
+	Base* a = new A;
+	return(a);
+}
+
+Base*	makeB()
+{
+	Base* b = new B;
+	return(b);
+}
+
+Base*	makeC()
+{
+	Base* c = new C;
+	return(c);
+}
+
 Base * generate(void)
 {
-	Base * ptr = NULL; // change this it was just to compile
 	int rng;
+
 	srand( time( NULL ) );
 	rng = rand() % 3; // generates a random number between 0 and 2
 
-	std::cout << rng;
+	Base *(* classes[3])();
 
-	return (ptr); // change this as well
+	classes[0] = &makeA;
+	classes[1] = &makeB;
+	classes[2] = &makeC;
+
+	//std::cout << "Number generated is " << rng << std::endl; // if you want to see what type is created here
+	return(classes[rng]());
 }
 
-// affiche le véritable type de l’objet pointé par p : "A", "B" ou "C".
-// void identify(Base* p)
-// {}
+// "If the cast fails and new-type (the target type) is a reference type, it throws an exception"
+void identify(Base& p)
+{
+	try
+	{
+		A & a = dynamic_cast<A&>(p);
+		(void)a;
+		std::cout << "Type is : a" << std::endl;
+		return;
+	}
+	catch(const std::exception& e)
+	{
+		try
+		{
+			B & b = dynamic_cast<B&>(p);
+			(void)b;
+			std::cout << "Type is : b" << std::endl;
+			return;
+		}
+		catch(const std::exception& e)
+		{
+			try
+			{
+				C & c = dynamic_cast<C&>(p);
+				(void)c;
+				std::cout << "Type is : c" << std::endl;
+				return;
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << "Unidentified type." << std::endl;
+			}
+		}
+	}
+}
 
-
-// affiche le véritable type de l’objet pointé par p : "A", "B" ou "C". 
-//Utiliser un pointeur dans cette fonction est interdit.
-// void identify(Base& p)
-// {}
+// "If the cast fails and new-type is a pointer type, it returns a null pointer of that type."
+void identify(Base* p)
+{
+	A * a = dynamic_cast<A*>(p);
+	B * b = dynamic_cast<B*>(p);
+	C * c = dynamic_cast<C*>(p);
+	
+	if (a)
+	{
+		std::cout << "Type is : a" << std::endl;
+		return;
+	}
+	if (b)
+	{
+		std::cout << "Type is : b" << std::endl;
+		return;
+	}
+	if (c)
+	{
+		std::cout << "Type is : c" << std::endl;
+		return;
+	}
+}
 
 
 int	main(void)
 {
-	generate();
+	Base * base = NULL;
+	base = generate();
+	Base & ref = *base;
+
+	identify(ref);
+	identify(base);
 	return (0);
 }

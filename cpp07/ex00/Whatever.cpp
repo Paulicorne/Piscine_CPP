@@ -1,14 +1,14 @@
-#include "Data.hpp"
+#include "Whatever.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Data::Data() : _i(0), _c('!')
+Whatever::Whatever()
 {
 }
 
-Data::Data( const Data & src ) : _i(src._i), _c(src._c)
+Whatever::Whatever( const Whatever & src )
 {
 }
 
@@ -17,7 +17,7 @@ Data::Data( const Data & src ) : _i(src._i), _c(src._c)
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Data::~Data()
+Whatever::~Whatever()
 {
 }
 
@@ -26,15 +26,21 @@ Data::~Data()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Data &				Data::operator=( Data const & rhs )
+Whatever &				Whatever::operator=( Whatever const & rhs )
 {
-	if ( this != &rhs )
-	{
-		this->_i = rhs._i;
-		this->_c = rhs._c;
-	}
+	//if ( this != &rhs )
+	//{
+		//this->_value = rhs.getValue();
+	//}
 	return *this;
 }
+
+std::ostream &			operator<<( std::ostream & o, Whatever const & i )
+{
+	//o << "Value = " << i.getValue();
+	return o;
+}
+
 
 /*
 ** --------------------------------- METHODS ----------------------------------

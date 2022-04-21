@@ -12,15 +12,15 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-NAME				=	identify
+NAME				=	template
 
-SRCS				=	main.cpp Base.cpp
+SRCS				=	main.cpp whatever.cpp
 
 OBJ_PATH			=	obj
 OBJS				=	$(addprefix $(OBJ_PATH)/, $(SRCS:.cpp=.o))
 
 INC_PATH			=	.
-INCS				=	Base.hpp A.hpp B.hpp C.hpp
+INCS				=	whatever.hpp
 
 CPPFLAG				=	-std=c++98
 COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror

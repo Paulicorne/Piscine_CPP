@@ -7,6 +7,8 @@ Please check out [Salomé's repo](https://github.com/Fihiz/42-final_CPP)
 Her work helped me a lot while working on this !
 She documented key notions and her code is clean and commented.
 
+Some exercices are also inspired by [Aleyra's work](https://github.com/aleyra/). Again very clean code.
+
 Also used @frfrey's [Vscode Extension](https://marketplace.visualstudio.com/items?itemName=frfreyCanonicalClassCPP.canonicalclasscpp)
 
 ** If you are from 42 and need help/further explainations, feel free to dm me on Slack (@pmillet) ! **
