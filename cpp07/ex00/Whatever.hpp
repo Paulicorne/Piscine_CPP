@@ -4,6 +4,26 @@
 # include <iostream>
 # include <string>
 
+template < typename T>
+void	swap(T & a, T & b) // using reference to match main (cannot use addresses to swap)
+{
+	T temp = a;
+	a = b;
+	b = temp;
+}
+
+template < typename T>
+T		min(T const & a, T const & b)
+{
+	return( b <= a ? b : a);
+}
+
+template < typename T>
+T		max(T const & a, T const & b)
+{
+	return( b >= a ? b : a);
+}
+
 class Whatever
 {
 
@@ -13,15 +33,10 @@ class Whatever
 		Whatever( Whatever const & src );
 		~Whatever();
 
-		swap();
-		min();
-		max();
 		Whatever &		operator=( Whatever const & rhs );
 
 	private:
 
 };
-
-std::ostream &			operator<<( std::ostream & o, Whatever const & i );
 
 #endif /* ******************************************************** WHATEVER_H */
