@@ -1,12 +1,15 @@
 #include "Array.hpp"
 
+#define END "\033[0m"
+#define GREEN "\033[32m"
+
 int	main(void)
 {
 	// int * a = new int();
 	// std::cout << *a;
 
 	/* EMPTY ARRAY */
-	std::cout << "\033[32mEMPTY ARRAY\033[0m" << std::endl << std::endl;
+	std::cout << GREEN << "EMPTY ARRAY" << END << std::endl << std::endl;
 	Array<int>	arr0;
 	std::cout << "Size of array arr0 is : " << arr0.size() << std::endl;
 	std::cout << arr0 << std::endl;
@@ -24,7 +27,7 @@ int	main(void)
 
 
 	/* ARRAY WITH SIZE */
-	std::cout << "\033[32mARRAY WITH SIZE\033[0m" << std::endl << std::endl;
+	std::cout << GREEN << "ARRAY WITH SIZE" << END << std::endl << std::endl;
 	unsigned int n = 3;
 	Array<int> arr(n);
 	std::cout << "Size of array is : " << arr.size() << std::endl;
@@ -42,7 +45,7 @@ int	main(void)
 
 
 	/* ARRAY BY (DEEP) COPY */
-	std::cout << "\033[32mARRAY BY COPY\033[0m" << std::endl << std::endl;
+	std::cout << GREEN << "ARRAY BY COPY" << END << std::endl << std::endl;
 	Array<int> arr2(arr);
 	std::cout << arr2 << std::endl;
 	arr2[0] = 42;
@@ -56,7 +59,7 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl << std::endl;
 	}
-	std::cout << "\033[32mWOW MY ARRAY COPY IS SO DEEP CHECK THIS OUT\033[0m" << std::endl << std::endl;
+	std::cout << GREEN << "WOW MY ARRAY COPY IS SO DEEP CHECK THIS OUT" << END << std::endl << std::endl;
 	std::cout << arr << std::endl;
 	std::cout << arr2 << std::endl;
 }
