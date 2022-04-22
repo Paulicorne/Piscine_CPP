@@ -12,7 +12,7 @@ UNDER       		=    \033[4m
 SUR					=    \033[7m
 END					=    \033[0m
 
-NAME				=	iter
+NAME				=	array
 
 SRCS				=	main.cpp
 
@@ -20,7 +20,7 @@ OBJ_PATH			=	obj
 OBJS				=	$(addprefix $(OBJ_PATH)/, $(SRCS:.cpp=.o))
 
 INC_PATH			=	.
-INCS				=	Iter.hpp
+INCS				=	Array.hpp
 
 CPPFLAG				=	-std=c++98
 COMP				=	c++ $(CPPFLAG) -Wall -Wextra -Werror

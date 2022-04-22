@@ -4,19 +4,40 @@
 # include <iostream>
 # include <string>
 
-class Iter
+template < typename T>
+void	print(T const &data)
 {
+	std::cout << data << " ";
+}
 
-	public:
+template < typename T>
+void	iter(T* adress, size_t size, void(*func)(T const &data)) // const style
+{
+	size_t i = 0;
 
-		Iter();
-		Iter( Iter const & src );
-		~Iter();
+	while (i < size)
+	{
+		func(adress[i]);
+		i++;
+	}
+}
 
-		Iter &		operator=( Iter const & rhs );
+template < typename T>
+void	increment(T *data)
+{
+	*data += 1;
+}
 
-	private:
+template < typename T>
+void	iterAlter(T* adress, size_t size, void(*func)(T *data)) // by address, so we can alter data
+{
+	size_t i = 0;
 
-};
+	while (i < size)
+	{
+		func(&adress[i]);
+		i++;
+	}
+}
 
 #endif /* ************************************************************ ITER_H */
