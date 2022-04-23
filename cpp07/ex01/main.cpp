@@ -17,16 +17,16 @@ int	main(void)
 	::iter(fnbrs, 6, ::print);
 	std::cout << std::endl << std::endl << std::endl;
 
-	std::cout << "Then incrementing with my template that uses pointers, then re-printing values :" << std::endl;
-	::iterAlter(str, std::strlen(str), ::increment);
+	std::cout << "Then incrementing with my template that uses pointers, then re-printing values via const template (implicitly) :" << std::endl;
+	::iter(str, std::strlen(str), ::increment);
 	::iter(str, std::strlen(str), ::print);
 	std::cout << std::endl << std::endl;
 
-	::iterAlter(nbrs, 6, ::increment);
+	::iter(nbrs, 6, ::increment);
 	::iter(nbrs, 6, ::print);
 	std::cout << std::endl << std::endl;
 
-	::iterAlter(fnbrs, 6, ::increment);
+	::iter(fnbrs, 6, ::increment);
 	::iter(fnbrs, 6, ::print);
 	std::cout << std::endl;
 }

@@ -14,8 +14,10 @@ class Array
 
 	public:
 
-		Array<T>() :  _n(0), _array(NULL){std::cout << "Default constructor called" << std::endl;};
-		Array<T>( unsigned int n ) : _n(n),_array(new T[n]()) {std::cout << "Size paremeter constructor called" << std::endl;};	// initialised by default by adding "()" after "new T[n]"
+		Array<T>() :  _n(0), _array(NULL){
+			std::cout << "Default constructor called" << std::endl;};
+		Array<T>( unsigned int n ) : _n(n),_array(new T[n]()) {
+			std::cout << "Size paremeter constructor called" << std::endl;};	// initialised by default by adding "()" after "new T[n]"
 		Array<T>( Array const & src ) : _n(src._n), _array(NULL)
 		{
 			std::cout << "Copy constructor called" << std::endl;

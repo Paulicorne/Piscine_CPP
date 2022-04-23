@@ -5,7 +5,7 @@
 # include <string>
 
 template < typename T>
-void	swap(T & a, T & b) // using reference to match main (cannot use addresses to swap)
+void	swap(T & a, T & b) // using reference to match main (hence we cannot simply use addresses to swap data)
 {
 	T temp = a;
 	a = b;
